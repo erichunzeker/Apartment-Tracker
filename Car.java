@@ -33,6 +33,29 @@ public class Car{
         this.color = color;
     }
 
+    public void addCar(String VIN, String make, String model, double price, double mileage, String color)
+    {
+        Car car = new Car(VIN, make, model, price, mileage, color);
+
+        if (size < carPricePQ.length) {
+            carPricePQ[size] = car;
+            carMileagePQ[size] = car;
+
+            size++;
+        } else {
+            resize();
+            carPricePQ[size] = car;
+            carMileagePQ[size] = car;
+
+            size++;
+        }
+
+        if (size > 1) {
+            PriceHeap.sort(carPricePQ, size);
+            MileageHeap.sort(carMileagePQ, size);
+        }
+    }
+
     public void addCar()
     {
         boolean valid;

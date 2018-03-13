@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,6 +21,32 @@ public class CarTracker {
 
         if(input.equalsIgnoreCase("no"))
             run = false;
+        else
+        {
+            try {
+                File f = new File("cars.txt");
+                Scanner s = new Scanner(f);
+
+                s.nextLine();
+
+                while(s.hasNextLine()) {
+                    String c = s.nextLine();
+                    String[] carParts = c.split(":");
+
+                    String VIN = carParts[0];
+                    String make = carParts[1];
+                    String model = carParts[2];
+                    double price = Double.parseDouble(carParts[3]);
+                    double mileage = Double.parseDouble(carParts[4]);
+                    String color = carParts[5];
+
+                    car.addCar(VIN, make, model, price, mileage, color);
+                }
+            }
+            catch (FileNotFoundException f){
+                System.out.println("file not found");
+            }
+        }
 
         while(run) {
             do {
