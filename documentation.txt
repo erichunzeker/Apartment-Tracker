@@ -1,0 +1,43 @@
+Since there are two main PQ based queries, I decided to create 2 PQ based data structures and an indirection hashmap for cities.
+The first is an array with the first index as the min price.
+The next is also an array, however, the first index is the greatest squarefeet.
+In order to maintain logarithmic insert time, I used a heap sort method on each array to maintain the heap.
+The runtime for get lowest price/get highest squarefeet is constant because it is always at the beginning of each array.
+Also, the retrieval by city worst case is linear because it searches the whole array and it might be the last one.
+The hash map keeps track of the cities that are in the PQ so that the get by cities functions dont have to traverse the PQ if the inputted cities don't exist.
+
+1.) Add apt.
+
+    When a user types in the new apt, it is added to the Price array PQ and the SQFT array PQ
+    the arrays are then sorted to maintain the heap
+    After, the apt city is added to the city hash map
+
+2.) Update apt.
+
+    First, the program gets the apt from the user
+    after, it searches both arrays for the following apt
+    then, it asks to update the price, then resaves and resorts
+
+3.) Delete
+
+    First, program asks user to input the apt
+    search both arrays for apartment, and use delete method to get rid of apartment and shift array to cover the hole
+    City is deleted/decremented from hash map
+
+4.) Get lowest price
+
+    grab index 0 from price array
+
+5.) get highest sqft
+
+    grab index 0 from sqft array
+
+6.) Get lowest price by city
+
+    see if city exists in hashmap, if not, none found
+    else, search 0, 1, 2, ... n till city is found
+
+7.) get highest sqft by city
+
+    see if city exists in hashmap, if not, none found
+    else, search 0, 1, 2, ... n till city is found
