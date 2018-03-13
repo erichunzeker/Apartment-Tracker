@@ -37,6 +37,17 @@ yes
 If not, what is/are the error(s) and which parts of your program run
 correctly?:
 
+
+
+
+
+
+
 Additional comments to the grader:
 
-cars.txt must be in the same directory as the .java files because the file location is hard coded
+
+
+
+
+
+
