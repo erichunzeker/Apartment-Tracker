@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 public class CarTracker {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Car car = new Car();
 
@@ -21,8 +20,7 @@ public class CarTracker {
 
         if(input.equalsIgnoreCase("no"))
             run = false;
-        else
-        {
+        else {
             try {
                 File f = new File("cars.txt");
                 Scanner s = new Scanner(f);
@@ -42,8 +40,7 @@ public class CarTracker {
 
                     car.addCar(VIN, make, model, price, mileage, color);
                 }
-            }
-            catch (FileNotFoundException f){
+            } catch (FileNotFoundException f){
                 System.out.println("file not found");
             }
         }
@@ -61,8 +58,7 @@ public class CarTracker {
                             + "\n" + "7.) Search By Lowest Mileage By Make & Model");
 
                     choice = scanner.nextInt();
-                }
-                catch (InputMismatchException i) {
+                } catch (InputMismatchException i) {
                     System.out.println("Error in selecting choice, try again");
                     scanner.nextLine();
                     choice = 0;
@@ -91,8 +87,7 @@ public class CarTracker {
             else
                 car.getCarByMakeModelByMileageLowToHigh();
 
-            do
-            {
+            do {
                 scanner.nextLine();
                 System.out.println("Would you like to continue with the car application (yes/no)");
                 input = scanner.nextLine();
@@ -102,7 +97,6 @@ public class CarTracker {
                 run = false;
 
         }
-
         System.out.println("goodbye");
     }
 }

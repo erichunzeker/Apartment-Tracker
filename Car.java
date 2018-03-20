@@ -1,30 +1,25 @@
 import java.text.NumberFormat;
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Car{
+public class Car {
 
     private Scanner scanner = new Scanner(System.in);
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
-
-    //class attributes
 
     private String VIN, make, model, color;
     private int size;
     protected double price, mileage; //price per month & square footage
     private Car[] carPricePQ, carMileagePQ;
 
-    public Car()
-    {
+    public Car() {
         // default constructor
         carPricePQ = new Car[25];
         carMileagePQ = new Car[25];
         size = 0;
     }
 
-    public Car(String VIN, String make, String model, double price, double mileage, String color)
-    {
+    public Car(String VIN, String make, String model, double price, double mileage, String color) {
         this.VIN = VIN;
         this.make = make;
         this.model = model;
@@ -33,20 +28,17 @@ public class Car{
         this.color = color;
     }
 
-    public void addCar(String VIN, String make, String model, double price, double mileage, String color)
-    {
+    public void addCar(String VIN, String make, String model, double price, double mileage, String color) {
         Car car = new Car(VIN, make, model, price, mileage, color);
 
         if (size < carPricePQ.length) {
             carPricePQ[size] = car;
             carMileagePQ[size] = car;
-
             size++;
         } else {
             resize();
             carPricePQ[size] = car;
             carMileagePQ[size] = car;
-
             size++;
         }
 
@@ -56,8 +48,7 @@ public class Car{
         }
     }
 
-    public void addCar()
-    {
+    public void addCar() {
         boolean valid;
         do {
             valid = true;
@@ -81,7 +72,6 @@ public class Car{
                 System.out.println("Enter the color");
                 scanner.nextLine();
                 color = scanner.nextLine();
-
 
                 Car car = new Car(VIN, make, model, price, mileage, color);
 
@@ -111,16 +101,14 @@ public class Car{
         }while(!valid);
     }
 
-    public void updateCar()
-    {
+    public void updateCar() {
         try {
             System.out.println("Enter the VIN");
             VIN = scanner.nextLine();
 
             int p = -1, m = -1;
 
-            for (int i = 0; i < size; i++)
-            {
+            for (int i = 0; i < size; i++) {
                 if (carPricePQ[i].VIN.equalsIgnoreCase(VIN))
                     p = i;
                 if (carMileagePQ[i].VIN.equalsIgnoreCase(VIN))
@@ -172,24 +160,19 @@ public class Car{
                 carPricePQ[p].color = color;
                 carMileagePQ[p].color = color;
             }
-        }
-        catch(ArrayIndexOutOfBoundsException | InputMismatchException e)
-        {
+        } catch(ArrayIndexOutOfBoundsException | InputMismatchException e) {
             System.out.println("Error in updating price");
         }
-
     }
 
-    public void removeCar()
-    {
+    public void removeCar() {
         try {
             System.out.println("Enter the VIN");
             VIN = scanner.nextLine();
 
             int p = -1, m = -1;
 
-            for (int i = 0; i < size; i++)
-            {
+            for (int i = 0; i < size; i++) {
                 if (carPricePQ[i].VIN.equalsIgnoreCase(VIN))
                     p = i;
                 if (carMileagePQ[i].VIN.equalsIgnoreCase(VIN))
@@ -199,39 +182,30 @@ public class Car{
             displayCar(carPricePQ[p]);
 
             delete(p, m);
-        }
-
-        catch(ArrayIndexOutOfBoundsException | InputMismatchException e)
-        {
+        } catch(ArrayIndexOutOfBoundsException | InputMismatchException e) {
             System.out.println("Sorry, no car was found");
         }
-
     }
 
-    public void getCarByPriceLowToHigh()
-    {
+    public void getCarByPriceLowToHigh() {
         try {
             System.out.println("Lowest Price: ");
             displayCar(carPricePQ[0]);
-        }
-        catch(NullPointerException e) {
+        } catch(NullPointerException e) {
             System.out.println("Car list is empty");
         }
     }
 
-    public void getCarByMileageHighToLow()
-    {
+    public void getCarByMileageHighToLow() {
         try {
             System.out.println("Lowest Mileage: ");
             displayCar(carMileagePQ[0]);
-        }
-        catch(NullPointerException e) {
+        } catch(NullPointerException e) {
             System.out.println("Car list is empty");
         }
     }
 
-    public void getCarByMakeModelByPriceLowToHigh()
-    {
+    public void getCarByMakeModelByPriceLowToHigh() {
         try {
             System.out.println("Enter the make");
             make = scanner.nextLine();
@@ -252,19 +226,15 @@ public class Car{
                 }
             }
 
-
             System.out.println("Lowest Price: " + carPricePQ[p].model);
             displayCar(carPricePQ[p]);
-        }
-        catch(ArrayIndexOutOfBoundsException e)
-        {
+        } catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Sorry, no car was found");
         }
 
     }
 
-    public void getCarByMakeModelByMileageLowToHigh()
-    {
+    public void getCarByMakeModelByMileageLowToHigh() {
         try {
             System.out.println("Enter the make");
             make = scanner.nextLine();
@@ -286,17 +256,14 @@ public class Car{
 
             System.out.println("Lowest Mileage: " + carMileagePQ[m].model);
             displayCar(carMileagePQ[m]);
-        }
-        catch(ArrayIndexOutOfBoundsException e)
-        {
+        } catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Sorry, no car was found");
         }
 
     }
 
 
-    private void displayCar(Car a)
-    {
+    private void displayCar(Car a) {
         System.out.println(
                 "\nVIN: " + a.VIN + "\n" +
                         "Make: " + a.make + "\n" +
@@ -306,8 +273,7 @@ public class Car{
                         "Color: " + a.color + "\n");
     }
 
-    private void resize()
-    {
+    private void resize() {
         Car[] newCarPricePQ = new Car[carPricePQ.length * 2];
         Car[] newCarMileagePQ = new Car[carMileagePQ.length * 2];
 
@@ -320,8 +286,7 @@ public class Car{
         carMileagePQ = newCarMileagePQ;
     }
 
-    private void delete(int p , int m)
-    {
+    private void delete(int p , int m) {
         size--;
 
         if(size == 0)
