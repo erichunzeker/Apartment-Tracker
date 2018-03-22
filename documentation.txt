@@ -7,20 +7,20 @@ Also, the retrieval by make and model worst case is linear because it searches t
 
 1.) Add car.
 
-    When a user types in the new apt, it is added to the Price array PQ and the SQFT array PQ
+    When a user types in the new car, it is added to the Price array PQ and the mileage array PQ
     the arrays are then sorted to maintain the heap
-    After, the apt city is added to the city hash map
 
 2.) Update car.
 
-    First, the program gets the apt from the user
-    after, it searches both arrays for the following apt
-    then, it asks to update the price, then resaves and resorts
+    First, the program gets the car from the user
+    after, it searches both arrays for the following car
+    then, it asks to update, then resaves and resorts
 
 3.) Delete
 
     First, program asks user to input the vin
-    search both arrays for car, and use delete method to get rid of car and shift array to cover the hole
+    search both arrays for car, and use delete method
+    to get rid of car and shift array to cover the hole
 
 4.) Get lowest price
 
